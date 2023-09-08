@@ -35,6 +35,8 @@ export default function Home() {
               src='/watch.png'
               alt='Generic watch'
               priority
+              width={300}
+              height={590}
               fill
               objectFit='cover'
             />
