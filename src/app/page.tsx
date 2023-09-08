@@ -11,7 +11,7 @@ export default function Home() {
           montremoi.ma
         </a>
 
-        <nav className='flex gap-6 font-light'>
+        <nav className='hidden lg:flex gap-6 font-light'>
           <a href='/homme'>Montre pour Homme</a>
           <a href='/femme'>Montre pour Femme</a>
           <a href='/marque'>Marque</a>
@@ -22,48 +22,50 @@ export default function Home() {
         <button className='uppercase font-bold text-sm'>Menu</button>
       </header>
       <main>
-        <section className='min-h-[max(300px,85vh)] text-6xl font-bold flex items-center justify-center p-8'>
+        <section className='lg:min-h-[max(300px,85vh)] flex flex-wrap items-center justify-center p-8 gap-16'>
           <p
-            className='max-w-[750px]'
+            className='text-2xl md:text-6xl font-bold max-w-[750px]'
             // @ts-ignore
             style={{ textWrap: 'balance' }}
           >
             Faites-vous plaisir avec une horlogerie de luxe
           </p>
-          <div className='w-[300px] h-[590px] relative'>
+          <div className='w-[300px] h-[300px] lg:h-[590px] relative'>
             <Image
               src='/watch.png'
               alt='Generic watch'
               priority
-              width={300}
-              height={590}
               fill
               objectFit='cover'
             />
           </div>
         </section>
 
-        <section className='grid grid-cols-2 gap-8 justify-center p-8 min-h-[max(400px,65vh)]'>
+        <section className='grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 min-h-[max(400px,65vh)] [&>*]:max-w-full [&>*]:max-lg:mx-auto'>
           {/* Shout out to https://unsplash.com/@cy_entertainment for the background photo*/}
           <CategoryBlock
-            className='bg-[url("/montre-homme.avif")] bg-[center_70%]'
+            className='bg-[url("/montre-homme.avif")] bg-right md:bg-[center_70%]'
             title={['Montre pour', 'Homme']}
           />
 
           {/* Shout out to https://unsplash.com/@laurachouette for the background photo*/}
           <CategoryBlock
-            className='bg-[url("/montre-femme.avif")] bg-[center_92%]'
+            className='bg-[url("/montre-femme.avif")] bg-right-bottom max-sm:bg-[length:125%] md:bg-[center_92%]'
             title={['Montre pour', 'Femme']}
             theme='light'
           />
         </section>
       </main>
-      <footer className='pb-24 flex gap-x-10 items-center px-8'>
+      <footer className='pb-24 flex flex-wrap gap-x-10 gap-y-3 items-center px-8'>
         <h6>Partager</h6>
 
-        <nav className='flex gap-x-4 font-bold text-sm uppercase'>
+        <nav className='flex flex-wrap gap-x-4 font-bold text-sm uppercase'>
           {socials.map(({ label }, index) => {
-            return <div key={index}>{label}</div>
+            return (
+              <div key={index} className='leading-loose'>
+                {label}
+              </div>
+            )
           })}
         </nav>
       </footer>
@@ -95,14 +97,14 @@ function CategoryBlock({
   return (
     <article
       className={cx(
-        `bg-no-repeat bg-cover rounded-xl w-[680px] h-[286px] flex items-center px-8`,
+        `group bg-no-repeat bg-cover rounded-xl md:w-[680px] md:aspect-[680/286] flex md:items-center p-6 md:p-8`,
         theme === 'dark' ? 'bg-gray-700' : null,
         className
       )}
     >
       <p
         className={cx(
-          'text-4xl font-bold',
+          'text-2xl sm:text-3xl lg:text-4xl font-bold transition-transform group-hover:scale-105 duration-500 ease-out',
           theme === 'dark' ? 'text-white' : null
         )}
       >
