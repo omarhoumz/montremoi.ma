@@ -41,7 +41,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className='grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 min-h-[max(400px,65vh)] [&>*]:max-w-full [&>*]:max-lg:mx-auto'>
+        <section className='grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 min-h-[max(400px,65vh)] [&>*]:max-lg:mx-auto'>
           {/* Shout out to https://unsplash.com/@cy_entertainment for the background photo*/}
           <CategoryBlock
             className='bg-[url("/montre-homme.avif")] bg-right md:bg-[center_70%]'
@@ -97,7 +97,7 @@ function CategoryBlock({
   return (
     <article
       className={cx(
-        `group bg-no-repeat bg-cover rounded-xl md:w-[680px] md:aspect-[680/286] flex md:items-center p-6 md:p-8`,
+        `group bg-no-repeat bg-cover rounded-xl w-full max-w-[680px] md:aspect-[680/286] flex md:items-center p-6 md:p-8`,
         theme === 'dark' ? 'bg-gray-700' : null,
         className
       )}
