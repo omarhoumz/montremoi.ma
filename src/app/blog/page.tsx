@@ -4,17 +4,19 @@ import Link from 'next/link'
 import { allPosts, Post } from 'contentlayer/generated'
 
 export default function Page() {
-  const posts = allPosts.sort((a, b) =>
-    compareDesc(new Date(a.date), new Date(b.date)),
-  )
+  const posts = allPosts
+    .filter((post) => post.published)
+    .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
 
   return (
     <div className='mx-auto w-full max-w-7xl flex-grow bg-white px-6 py-16'>
       <h1 className='mb-8 text-4xl font-light'>Blog</h1>
 
-      {posts.map((post, idx) => (
-        <PostLink key={idx} {...post} />
-      ))}
+      {!posts || posts?.length <= 0 ? (
+        <p>No posts found.</p>
+      ) : (
+        posts.map((post, idx) => <PostLink key={idx} {...post} />)
+      )}
     </div>
   )
 }
