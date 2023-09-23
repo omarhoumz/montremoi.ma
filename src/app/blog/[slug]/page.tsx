@@ -17,7 +17,7 @@ export default function Page({ params }: { params: { slug: string } }) {
   const MDXContent = useMDXComponent(post.body.code)
 
   return (
-    <div className='prose lg:prose-x [&>h1]:[textWrap:balance] px-6 mx-auto py-16'>
+    <div className='lg:prose-x prose mx-auto max-w-3xl bg-white px-6 py-16 [&>h1]:text-3xl [&>h1]:[textWrap:balance]'>
       <MDXContent />
     </div>
   )

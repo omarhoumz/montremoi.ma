@@ -10,12 +10,8 @@ export default function Home() {
       <Header />
 
       <main>
-        <section className='lg:min-h-[max(300px,85vh)] flex flex-wrap items-center justify-center p-8 gap-16'>
-          <p
-            className='text-2xl md:text-6xl font-bold max-w-[750px]'
-            // @ts-ignore
-            style={{ textWrap: 'balance' }}
-          >
+        <section className='flex flex-wrap items-center justify-center gap-16 p-8 lg:min-h-[max(300px,85vh)]'>
+          <p className='max-w-[750px] text-2xl font-bold [textWrap:balance] md:text-6xl'>
             Faites-vous plaisir avec une horlogerie de luxe
           </p>
           <Image
@@ -24,11 +20,11 @@ export default function Home() {
             priority
             width={300}
             height={590}
-            className='w-[300px] h-[300px] lg:h-[590px] max-w-full object-cover'
+            className='h-[300px] w-[300px] max-w-full object-cover lg:h-[590px]'
           />
         </section>
 
-        <section className='grid grid-cols-1 lg:grid-cols-2 gap-8 p-8 min-h-[max(750px,65vh)] [&>*]:max-lg:mx-auto'>
+        <section className='grid min-h-[max(750px,65vh)] grid-cols-1 gap-8 p-8 lg:grid-cols-2 [&>*]:max-lg:mx-auto'>
           {/* Shout out to https://unsplash.com/@cy_entertainment for the background photo*/}
           <CategoryBlock
             className='bg-[url("/montre-homme.avif")] bg-right md:bg-[center_70%]'
@@ -44,10 +40,10 @@ export default function Home() {
         </section>
       </main>
 
-      <footer className='pb-24 px-8'>
-        <section className='flex flex-wrap gap-x-10 gap-y-3 items-center'>
+      <footer className='px-8 pb-24'>
+        <section className='flex flex-wrap items-center gap-x-10 gap-y-3'>
           <h6>Partager</h6>
-          <nav className='flex flex-wrap gap-x-4 font-bold text-sm uppercase'>
+          <nav className='flex flex-wrap gap-x-4 text-sm font-bold uppercase'>
             {socials.map(({ label }, index) => {
               return (
                 <div key={index} className='leading-loose'>
@@ -86,15 +82,15 @@ function CategoryBlock({
   return (
     <article
       className={cn(
-        `group bg-no-repeat bg-cover rounded-xl w-full max-w-[680px] md:aspect-[680/286] flex md:items-center p-6 md:p-8`,
+        `group flex w-full max-w-[680px] rounded-xl bg-cover bg-no-repeat p-6 md:aspect-[680/286] md:items-center md:p-8`,
         theme === 'dark' ? 'bg-gray-700' : null,
-        className
+        className,
       )}
     >
       <p
         className={cn(
-          'text-2xl sm:text-3xl lg:text-4xl font-bold transition-transform group-hover:scale-105 duration-500 ease-out',
-          theme === 'dark' ? 'text-white' : null
+          'text-2xl font-bold transition-transform duration-500 ease-out group-hover:scale-105 sm:text-3xl lg:text-4xl',
+          theme === 'dark' ? 'text-white' : null,
         )}
       >
         {title[0]}

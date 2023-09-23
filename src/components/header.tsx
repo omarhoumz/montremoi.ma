@@ -3,16 +3,16 @@ import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
 
-const playfair = Playfair_Display_SC({ subsets: ['latin'], weight: ['900'] })
+const playfair = Playfair_Display_SC({ subsets: ['latin'], weight: ['700'] })
 
 export default function Header() {
   return (
-    <header className='h-16 flex items-center justify-between border-b-2 border-gray-100 px-6'>
-      <Link href='/' className={cn(playfair.className, 'leading-none')}>
+    <header className='flex h-[var(--header-height)] items-center justify-between border-b-2 border-gray-100 bg-white px-6'>
+      <Link href='/' className={cn(playfair.className, 'text-lg leading-none')}>
         montremoi.ma
       </Link>
 
-      <nav className='hidden lg:flex gap-6 font-light'>
+      <nav className='hidden gap-6 font-light lg:flex'>
         <a href='/homme'>Montre pour Homme</a>
         <a href='/femme'>Montre pour Femme</a>
         <a href='/marque'>Marque</a>
@@ -20,7 +20,7 @@ export default function Header() {
         <a href='/'>Mes favoris (à venir)</a>
       </nav>
 
-      <button className='lg:hidden uppercase font-bold text-sm'>Menu</button>
+      <button className='text-sm font-bold uppercase lg:hidden'>Menu</button>
     </header>
   )
 }

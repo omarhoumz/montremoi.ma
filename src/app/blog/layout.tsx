@@ -11,7 +11,9 @@ export default function BlogLayout({
         <div className=''>
           <Header />
 
-          <main>{children}</main>
+          <main className='flex min-h-[var(--screen-minus-header)] flex-col'>
+            {children}
+          </main>
         </div>
       </body>
     </html>
