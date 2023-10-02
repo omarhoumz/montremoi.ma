@@ -2,7 +2,6 @@ import { useMDXComponent } from 'next-contentlayer/hooks'
 import { notFound } from 'next/navigation'
 
 import { allPosts } from 'contentlayer/generated'
-import TopMontreList from '@/components/posts/top-montre-list'
 
 export async function generateStaticParams() {
   return allPosts
@@ -19,8 +18,6 @@ export default function Page({ params }: { params: { slug: string } }) {
 
   return (
     <div className='lg:prose-x prose mx-auto max-w-3xl bg-white px-6 py-16 [&>h1]:text-3xl [&>h1]:[textWrap:balance]'>
-      <TopMontreList />
-
       <MDXContent />
     </div>
   )
