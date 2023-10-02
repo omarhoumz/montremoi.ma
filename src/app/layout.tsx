@@ -1,9 +1,19 @@
 import './globals.css'
 import type { Metadata } from 'next'
 
+const defaultTitle = 'MONTREMOI.MA'
+
 export const metadata: Metadata = {
-  title: 'MontreMoi.ma',
-  description: 'MontreMoi.ma',
+  title: `Home | ${defaultTitle}`,
+  description: defaultTitle,
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      url: '/favicon.png',
+      fetchPriority: 'high',
+    },
+  ],
 }
 
 export default function RootLayout({
