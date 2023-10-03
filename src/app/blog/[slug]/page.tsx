@@ -1,14 +1,34 @@
+import { Metadata } from 'next'
 import { useMDXComponent } from 'next-contentlayer/hooks'
 import { notFound } from 'next/navigation'
 
-import { allPosts } from 'contentlayer/generated'
+import { defaultTitle } from '@/app/layout'
+import { Post, allPosts } from 'contentlayer/generated'
 
 export async function generateStaticParams() {
   return allPosts
 }
 
-export default function Page({ params }: { params: { slug: string } }) {
-  const post = allPosts.find((post) => post._raw.flattenedPath === params.slug)
+function getPost(slug: string): Post | undefined {
+  return allPosts.find((post) => post._raw.flattenedPath === slug)
+}
+
+type ParamsProps = { slug: string }
+
+type Props = {
+  params: ParamsProps
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  // read route params
+  const post = getPost(params.slug)
+
+  return { title: post?.title ? `${post?.title} | ${defaultTitle}` : '' }
+}
+
+export default function Page({ params }: { params: ParamsProps }) {
+  const post = getPost(params.slug)
 
   // 404 if the post does not exist.
   if (!post) notFound()

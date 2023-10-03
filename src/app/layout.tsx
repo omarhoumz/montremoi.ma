@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
 
-const defaultTitle = 'MONTREMOI.MA'
+export const defaultTitle = 'MONTREMOI.MA'
 
 export const metadata: Metadata = {
   title: `Home | ${defaultTitle}`,
