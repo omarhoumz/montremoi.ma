@@ -1,18 +1,27 @@
 import { compareDesc, format, parseISO } from 'date-fns'
+import fr from 'date-fns/locale/fr'
 import Link from 'next/link'
 
 import { isProduction } from '@/lib/utils'
 import { allPosts, Post } from 'contentlayer/generated'
 
 export default function Page() {
+  return (
+    <div className='mx-auto w-full max-w-4xl flex-grow bg-white px-6 py-16'>
+      <h1 className='mb-8 text-4xl font-light'>Blog</h1>
+
+      <BlockList />
+    </div>
+  )
+}
+
+export function BlockList() {
   const posts = allPosts
     .filter((post) => (!isProduction() ? true : post.published === 'published'))
     .sort((a, b) => compareDesc(new Date(a.date), new Date(b.date)))
 
   return (
-    <div className='mx-auto w-full max-w-4xl flex-grow bg-white px-6 py-16'>
-      <h1 className='mb-8 text-4xl font-light'>Blog</h1>
-
+    <div className='flex flex-col gap-y-8'>
       {!posts || posts?.length <= 0 ? (
         <p>No posts found.</p>
       ) : (
@@ -24,7 +33,7 @@ export default function Page() {
 
 function PostLink(post: Post) {
   return (
-    <div className='mb-8'>
+    <div>
       <h2 className='mb-2 text-4xl font-bold [textWrap:balance]'>
         <Link
           href={post.url}
@@ -33,14 +42,18 @@ function PostLink(post: Post) {
           {post.title}
         </Link>
       </h2>
+
       <div className='flex items-center gap-x-3'>
         {isProduction() ? null : (
-          <span className='rounded bg-slate-200 px-1 text-sm capitalize'>
+          <span className='rounded border border-slate-300 bg-slate-100 px-1 text-sm capitalize text-slate-800'>
             {post.published}
           </span>
         )}
-        <time dateTime={post.date} className='text-xs text-gray-600'>
-          {format(parseISO(post.date), 'LLLL d, yyyy')}
+        <time
+          dateTime={post.date}
+          className='text-xs text-gray-600 first-letter:uppercase'
+        >
+          {format(parseISO(post.date), 'LLLL d, yyyy', { locale: fr })}
         </time>
       </div>
     </div>
